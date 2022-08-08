@@ -1,0 +1,58 @@
+"""
+push 4 na pilha. 
+push 3 na pilha. Neste momento a pilha contém (4, 3). 
+execute a operação + na pilha: pull dois números da pilha, some e push o 
+resultado na pilha. A pilha contém 7. 
+push 6 na pilha. 
+push 2 na pilha. Neste momento a pilha contém (2, 6, 7). 
+execute a operação – na pilha: pull dois números da pilha, subtraia o primeiro 
+do segundo e push o resultado na pilha. A pilha contém (4, 7). 
+execute a operação * na pilha: push dois números da pilha e multiplique um 
+pelo outro. A pilha contém 28.   
+""" 
+#Eduardo de Faria Freitas
+
+import operator
+import string
+import re
+import ast
+
+
+ops = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv,}
+num = string.digits
+
+
+ListExpress = []
+ex = input("Escreva a expressao: ")
+print(ex)
+ListExpress.append(ex)
+print("expressao: ",ex)
+
+res = re.sub("[( )]"," ", ex)
+print("sem parenteses:",res)
+
+for i in res:
+    if i in ops:
+        print(i)
+        solve = [int(s) for s in res.split() if s.isdigit()]
+        print("solve: ", solve)
+    
+        if i == "+":
+            for j in range(len(solve)):
+              solucao = int(solve.pop()) + int(solve.pop())
+              print(solucao)
+              
+        if i == "-":
+          for j in range(len(solve)):
+              solucao = int(solve.pop()) - int(solve.pop())
+              print(solucao)
+                      
+        if i == "*":
+            for j in range(len(solve)):
+              solucao = int(solve.pop()) * int(solve.pop())
+              print(solucao)
+              
+        if i == "/":
+          for j in range(len(solve)):
+              solucao = int(solve.pop()) / int(solve.pop())
+              print(solucao)
